@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Casts\IpAddressCast;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,6 +14,11 @@ class IpPool extends Model
         "range_start",
         "range_end",
         "customer_id"
+    ];
+
+    protected $casts = [
+        "range_start" => IpAddressCast::class,
+        "range_end" => IpAddressCast::class
     ];
 
     public function access_concentrator()
