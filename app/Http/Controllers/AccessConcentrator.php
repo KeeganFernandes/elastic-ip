@@ -17,11 +17,9 @@ class AccessConcentrator extends Controller
     {
         $user = $request->user;
 
-        dd($user);
+        $access_concentrator = ModelsAccessConcentrator::where(["customer_id" => $user["uuid"]])->get();
 
-        $access_concentrator = ModelsAccessConcentrator::where(["customer_id" => $user])->get();
-
-        return AccessConcentratorResource::collection($access_concentrator);
+        return response(AccessConcentratorResource::collection($access_concentrator));
     }
 
     /**
@@ -34,8 +32,12 @@ class AccessConcentrator extends Controller
     {
         $user = $request->user;
 
-        $access_concentrator = ModelsAccessConcentrator::where(["customer_id" => $user, "site_id" => $id])->get();
+        $access_concentrator = ModelsAccessConcentrator::where(["customer_id" => $user["uuid"], "site_id" => $id])->first();
 
-        return new AccessConcentratorResource($access_concentrator);
+        if (!$access_concentrator) {
+            return response("", 410);
+        }
+
+        return response(new AccessConcentratorResource($access_concentrator));
     }
 }
