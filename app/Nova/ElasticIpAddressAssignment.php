@@ -3,27 +3,25 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\Boolean;
-use Laravel\Nova\Fields\HasOne;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class ElasticIpAddress extends Resource
+class ElasticIpAddressAssignment extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = \App\Models\ElasticIpAddress::class;
+    public static $model = \App\Models\ElasticIpAddressAssignment::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'Name';
+    public static $title = 'site_id';
 
     /**
      * The columns that should be searched.
@@ -43,13 +41,11 @@ class ElasticIpAddress extends Resource
     public function fields(NovaRequest $request)
     {
         return [
-            Text::make("Ip Address"),
-            Text::make("Subscription Id"),
-            Text::make("Customer Id"),
-            Text::make("Name"),
-            Text::make("Ptr Record"),
-            Boolean::make("Suspended"),
-            HasOne::make("Ip Assignments"),
+            Text::make("Elastic Ip Address Id"),
+            Text::make("Access Concentrator Id"),
+            Text::make("Site Id"),
+            Text::make("Username"),
+            Text::make("Password"),
         ];
     }
 
@@ -96,7 +92,6 @@ class ElasticIpAddress extends Resource
     {
         return [];
     }
-
 
     public static function authorizedToCreate(Request $request)
     {

@@ -59,7 +59,7 @@ return [
     |
     */
 
-    'path' => '/nova',
+    'path' => '/',
 
     /*
     |--------------------------------------------------------------------------
@@ -99,7 +99,7 @@ return [
     */
 
     'middleware' => [
-        'web',
+        'unauthenticated',
         HandleInertiaRequests::class,
         DispatchServingNovaEvent::class,
         BootTools::class,

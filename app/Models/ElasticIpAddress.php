@@ -22,4 +22,9 @@ class ElasticIpAddress extends Model
     {
         return $this->hasMany(IpPool::class);
     }
+
+    public function ip_assignment()
+    {
+        return $this->hasOne(ElasticIpAddressAssignment::class);
+    }
 }
