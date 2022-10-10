@@ -13,13 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('elastic_ip_address_assignments', function (Blueprint $table) {
+        Schema::create('elastic_ip_addresses', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger("elastic_ip_address_id");
-            $table->bigInteger("access_concentrator_id");
-            $table->uuid("site_id");
-            $table->string("username");
-            $table->string("password");
+            $table->integer("ip_address");
+            $table->uuid("customer_id");
+            $table->uuid("subscription_id");
+            $table->string("name");
+            $table->string("ptr_record");
+            $table->boolean("suspended");
             $table->timestamps();
         });
     }
@@ -31,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('elastic_ip_address_assignments');
+        Schema::dropIfExists('elastic_ip_addresses');
     }
 };
