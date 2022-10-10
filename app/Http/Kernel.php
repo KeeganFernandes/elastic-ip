@@ -41,6 +41,7 @@ class Kernel extends HttpKernel
 
         'authenticated' => [
             'throttle:api',
+            'auth.token',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
     ];
@@ -63,5 +64,6 @@ class Kernel extends HttpKernel
         'signed' => \App\Http\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'auth.token' => \App\Http\Middleware\TokenAuth::class,
     ];
 }

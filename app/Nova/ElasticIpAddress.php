@@ -49,7 +49,7 @@ class ElasticIpAddress extends Resource
             Text::make("Name"),
             Text::make("Ptr Record"),
             Boolean::make("Suspended"),
-            HasOne::make("Ip Assignments"),
+            HasOne::make("Elastic Ip Address Assignment"),
         ];
     }
 

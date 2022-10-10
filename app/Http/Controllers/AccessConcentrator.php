@@ -17,6 +17,8 @@ class AccessConcentrator extends Controller
     {
         $user = $request->user;
 
+        dd($user);
+
         $access_concentrator = ModelsAccessConcentrator::where(["customer_id" => $user])->get();
 
         return AccessConcentratorResource::collection($access_concentrator);
