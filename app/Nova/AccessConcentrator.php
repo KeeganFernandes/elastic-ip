@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -41,9 +42,10 @@ class AccessConcentrator extends Resource
     public function fields(NovaRequest $request)
     {
         return [
-            Text::make("Name"),
-            Text::make("Site Id"),
-            Text::make("Customer Id"),
+            Text::make("Name")->rules(["required", "string"]),
+            Text::make("Site Id")->rules(["required", "uuid"]),
+            Text::make("Customer Id")->rules(["required", "uuid"]),
+            HasMany::make("Ip Pools"),
         ];
     }
 

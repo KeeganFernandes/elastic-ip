@@ -3,26 +3,26 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\BelongsToMany;
+use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class IpPool extends Resource
+class ElasticIpAddress extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = \App\Models\IpPool::class;
+    public static $model = \App\Models\ElasticIpAddress::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'range_start';
+    public static $title = 'Name';
 
     /**
      * The columns that should be searched.
@@ -42,10 +42,12 @@ class IpPool extends Resource
     public function fields(NovaRequest $request)
     {
         return [
-            Text::make("Range Start")->rules(["required", "ipv4"]),
-            Text::make("Range End")->rules(["required", "ipv4"]),
-            Text::make("Customer Id")->rules(["uuid"]),
-            BelongsToMany::make("Access Concentrator"),
+            Text::make("Ip Address"),
+            Text::make("Subscription Id"),
+            Text::make("Customer Id"),
+            Text::make("Name"),
+            Text::make("Ptr Record"),
+            Boolean::make("Suspended"),
         ];
     }
 
@@ -91,5 +93,26 @@ class IpPool extends Resource
     public function actions(NovaRequest $request)
     {
         return [];
+    }
+
+
+    public static function authorizedToCreate(Request $request)
+    {
+        return false;
+    }
+
+    public function authorizedToReplicate(Request $request)
+    {
+        return false;
+    }
+
+    public function authorizedToDelete(Request $request)
+    {
+        return false;
+    }
+
+    public function authorizedToUpdate(Request $request)
+    {
+        return false;
     }
 }

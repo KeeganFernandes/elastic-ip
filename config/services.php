@@ -30,5 +30,15 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
+    
+    'tokenauth' => [
+        'auth_api' => env('AUTH_ENDPOINT', 'https://api.mikrocloud.com'),
+    ],
 
+    'subscriptions' => [
+        'bootstrap' => [
+            'product_id' => env('BOOTSTRAP_PRODUCT_ID'),
+            'api_key' => env('BOOTSTRAP_API_KEY'),
+        ]
+    ],
 ];
