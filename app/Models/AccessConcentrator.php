@@ -17,6 +17,6 @@ class AccessConcentrator extends Model
 
     public function ip_pools()
     {
-        return $this->hasMany(IpPool::class);
+        return $this->belongsToMany(IpPool::class);
     }
 }

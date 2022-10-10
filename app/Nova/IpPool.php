@@ -45,7 +45,7 @@ class IpPool extends Resource
             Text::make("Range Start")->rules(["required", "ipv4"]),
             Text::make("Range End")->rules(["required", "ipv4"]),
             Text::make("Customer Id")->rules(["uuid"]),
-            BelongsToMany::make("Access Concentrator"),
+            BelongsToMany::make("Access Concentrator", "access_concentrator"),
         ];
     }
 

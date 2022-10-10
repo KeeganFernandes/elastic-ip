@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('ip_pool_access_concentrators', function (Blueprint $table) {
+        Schema::create('access_concentrator_ip_pool', function (Blueprint $table) {
             $table->id();
             $table->bigInteger("ip_pool_id");
             $table->bigInteger("access_concentrator_id");
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ip_pool_access_concentrators');
+        Schema::dropIfExists('access_concentrator_ip_pool');
     }
 };
