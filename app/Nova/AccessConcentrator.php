@@ -44,7 +44,7 @@ class AccessConcentrator extends Resource
         return [
             Text::make("Name")->rules(["required", "string"]),
             Text::make("Site Id")->rules(["required", "uuid"]),
-            Text::make("Customer Id")->rules(["required", "uuid"]),
+            Text::make("Customer Id")->rules(["nullable", "uuid"]),
             BelongsToMany::make("Ip Pools", "ip_pools"),
         ];
     }

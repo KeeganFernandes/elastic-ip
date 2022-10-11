@@ -15,9 +15,10 @@ return new class extends Migration
     {
         Schema::create('ip_pools', function (Blueprint $table) {
             $table->id();
-            $table->integer("range_start");
-            $table->integer("range_end");
-            $table->uuid("customer_id");
+            $table->uuid()->index()->unique();
+            $table->bigInteger("range_start");
+            $table->bigInteger("range_end");
+            $table->uuid("customer_id")->index();
             $table->timestamps();
         });
     }

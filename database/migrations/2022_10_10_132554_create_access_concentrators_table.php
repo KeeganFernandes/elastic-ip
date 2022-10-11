@@ -16,8 +16,12 @@ return new class extends Migration
         Schema::create('access_concentrators', function (Blueprint $table) {
             $table->id();
             $table->string("name");
-            $table->uuid("site_id");
-            $table->uuid("customer_id")->nullable();
+            $table->uuid("site_id")->index();
+            $table->uuid("customer_id")->nullable()->index();
+            $table->uuid("subscription_id")->index();
+            $table->string("radius_secret");
+            $table->string("radius_src_address");
+            $table->boolean("suspended");
             $table->timestamps();
         });
     }

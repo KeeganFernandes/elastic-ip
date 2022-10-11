@@ -3,12 +3,14 @@
 namespace App\Models;
 
 use App\Casts\IpAddressCast;
+use App\Traits\Uuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class IpPool extends Model
 {
     use HasFactory;
+    use Uuid;
 
     protected $fillable = [
         "range_start",

@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('elastic_ip_address_assignments', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger("elastic_ip_address_id");
-            $table->bigInteger("access_concentrator_id");
-            $table->uuid("site_id");
+            $table->bigInteger("elastic_ip_address_id")->index();
+            $table->bigInteger("access_concentrator_id")->index();
+            $table->uuid("site_id")->index();
             $table->string("username");
             $table->string("password");
             $table->timestamps();

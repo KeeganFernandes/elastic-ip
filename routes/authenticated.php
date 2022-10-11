@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AccessConcentrator;
+use App\Http\Controllers\IpPoolController;
+use App\Http\Controllers\UserElasticIpController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,4 +17,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::apiResource("/access-concerntrator", AccessConcentrator::class, ["only" => ["index", "show"]]);
+Route::apiResource("/access-concentrator", AccessConcentrator::class, ["only" => ["index", "show"]]);
+
+Route::apiResource("/ip-pool", IpPoolController::class);
+
+Route::put("/pool-assigment/{access_concentrator_id}", [AccessConcentrator::class, "pool_assigment"]);
+
+Route::apiResource("/", UserElasticIpController::class, ["only" => ["index", "show", "update"]]);

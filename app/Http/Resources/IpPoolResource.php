@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class AccessConcentratorResource extends JsonResource
+class IpPoolResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,11 +15,9 @@ class AccessConcentratorResource extends JsonResource
     public function toArray($request)
     {
         return [
-            "customer_id" => $this->customer_id,
-            "name" => $this->name,
-            "site_id" => $this->site_id,
-            //radius ip
-            //suspended
+            "id" => $this->uuid,
+            "range_start" => $this->range_start,
+            "range_end" => $this->range_end,
         ];
     }
 }

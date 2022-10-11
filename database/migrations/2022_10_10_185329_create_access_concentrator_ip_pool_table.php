@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('access_concentrator_ip_pool', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger("ip_pool_id");
-            $table->bigInteger("access_concentrator_id");
+            $table->bigInteger("ip_pool_id")->index();
+            $table->bigInteger("access_concentrator_id")->index();
             $table->timestamps();
         });
     }

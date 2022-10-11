@@ -12,7 +12,11 @@ class AccessConcentrator extends Model
     protected $fillable = [
         "name",
         "site_id",
-        "customer_id"
+        "customer_id",
+        "subscription_id",
+        "radius_secret",
+        "radius_src_address",
+        "suspended",
     ];
 
     public function ip_pools()
