@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class AccessConcentratorResource extends JsonResource
+class ElasticIpAddressAssignmentResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,12 +15,9 @@ class AccessConcentratorResource extends JsonResource
     public function toArray($request)
     {
         return [
-            "id" => $this->subscription_id,
-            "customer_id" => $this->customer_id,
-            "name" => $this->name,
-            "site_id" => $this->site_id,
-            "connect_to_address" => $this->radius_src_address,
-            "suspended" => $this->suspended,
+            "connect_to_address" => $this->access_concentrator->radius_src_address,
+            "username" => $this->username,
+            "password" => $this->password,
         ];
     }
 }

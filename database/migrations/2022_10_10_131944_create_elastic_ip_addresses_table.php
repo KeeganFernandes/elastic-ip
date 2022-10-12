@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string("name");
             $table->string("ptr_record")->nullable();
             $table->boolean("suspended")->default(false);
+            $table->dateTime("cooldown")->nullable();
             $table->timestamps();
         });
     }

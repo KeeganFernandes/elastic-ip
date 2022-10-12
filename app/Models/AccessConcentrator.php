@@ -2,12 +2,16 @@
 
 namespace App\Models;
 
+use App\Traits\AccessConcentratorRadiusSecret;
+use App\Traits\AvailableIpRanges;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class AccessConcentrator extends Model
 {
     use HasFactory;
+    use AccessConcentratorRadiusSecret;
+    use AvailableIpRanges;
 
     protected $fillable = [
         "name",

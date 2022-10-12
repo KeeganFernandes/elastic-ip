@@ -18,7 +18,7 @@ return new class extends Migration
             $table->uuid()->index()->unique();
             $table->bigInteger("range_start");
             $table->bigInteger("range_end");
-            $table->uuid("customer_id")->index();
+            $table->uuid("customer_id")->index()->nullable();
             $table->timestamps();
         });
     }

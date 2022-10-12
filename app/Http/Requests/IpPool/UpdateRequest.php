@@ -17,7 +17,7 @@ class UpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        if (!$this->ip_pool = IpPool::where(["id" => request("ip_pool"), "customer_id" => request()->user()?->uuid])->whereNotNull("customer_id")->first()) {
+        if (!$this->ip_pool = IpPool::where(["uuid" => request("ip_pool"), "customer_id" => request()->user()?->uuid])->whereNotNull("customer_id")->first()) {    
             return false;
         }
 
@@ -33,7 +33,7 @@ class UpdateRequest extends FormRequest
     {
         return [
             "range_start" => ["required_with:range_end", "ipv4", new IpRangeCheckRule()],
-            "range_end" => ["required_with:range_start", "ipv4"], // rule for start and end
+            "range_end" => ["required_with:range_start", "ipv4"],
         ];
     }
 

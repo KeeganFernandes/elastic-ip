@@ -2,9 +2,10 @@
 
 namespace App\Rules;
 
+use App\Models\AccessConcentrator;
 use Illuminate\Contracts\Validation\Rule;
 
-class IpRangeCheckRule implements Rule
+class SiteNotInAccessConcentrator implements Rule
 {
     /**
      * Create a new rule instance.
@@ -25,9 +26,7 @@ class IpRangeCheckRule implements Rule
      */
     public function passes($attribute, $value)
     {
-        $range_end = request("range_end") ?? 0;
-
-        if (ip2long(request("range_start")) > ip2long($range_end)) {
+        if (AccessConcentrator::where(["site_id" => $value])->first()) {
             return false;
         }
 
@@ -41,6 +40,6 @@ class IpRangeCheckRule implements Rule
      */
     public function message()
     {
-        return 'range_start cannot be greater than range_end.';
+        return 'Site cannot be an access concentrator.';
     }
 }

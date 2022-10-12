@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Casts\IpAddressCast;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -16,6 +17,10 @@ class ElasticIpAddress extends Model
         "name",
         "ptr_record",
         "suspended",
+    ];
+
+    protected $casts = [
+        "ip_address" => IpAddressCast::class,
     ];
 
     public function ip_pools()

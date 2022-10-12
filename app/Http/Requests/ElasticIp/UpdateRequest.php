@@ -16,7 +16,7 @@ class UpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        if (!$this->elastic_ip = ElasticIpAddress::where(["subscription_id" => request("elastic_ip"), "customer_id" => request()->user()?->uuid])->whereNotNull("customer_id")->first()) {
+        if (!$this->elastic_ip = ElasticIpAddress::where(["subscription_id" => request("manage"), "customer_id" => request()->user()?->uuid])->whereNotNull("customer_id")->first()) {
             return false;
         }
 

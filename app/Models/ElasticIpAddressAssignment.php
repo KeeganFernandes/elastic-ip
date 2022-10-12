@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use App\Traits\ElasticIpAddressAssignmentTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class ElasticIpAddressAssignment extends Model
 {
     use HasFactory;
+    use ElasticIpAddressAssignmentTrait;
 
     protected $fillable = [
         "elastic_ip_address_id",

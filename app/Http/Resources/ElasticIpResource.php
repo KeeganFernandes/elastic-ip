@@ -17,10 +17,9 @@ class ElasticIpResource extends JsonResource
         return [
             "ip_address" => $this->ip_address,
             "id" => $this->subscription_id,
-            "customer_id" => $this->customer_id,
             "name" => $this->name,
-            "ptr_record" => $this->ptr_record
-            //relationship to ip assigment
+            "ptr_record" => $this->ptr_record,
+            "l2tp_connection" => new ElasticIpAddressAssignmentResource($this->elastic_ip_address_assignment)
         ];
     }
 }

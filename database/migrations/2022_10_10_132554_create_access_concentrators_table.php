@@ -21,7 +21,7 @@ return new class extends Migration
             $table->uuid("subscription_id")->index();
             $table->string("radius_secret");
             $table->string("radius_src_address");
-            $table->boolean("suspended");
+            $table->boolean("suspended")->default(false);
             $table->timestamps();
         });
     }

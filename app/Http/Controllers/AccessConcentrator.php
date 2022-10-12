@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AccessConcentrator\UpdateRequest;
 use App\Http\Resources\AccessConcentratorResource;
 use App\Models\AccessConcentrator as ModelsAccessConcentrator;
+use App\Models\IpPool;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -46,14 +47,22 @@ class AccessConcentrator extends Controller
         $ip_pools = $validated["ip_pools"];
 
         if (filled($ip_pools)) {
+
+            $ip_pools = collect($ip_pools);
+
+            $ip_pools->transform(function ($value)
+            {
+                return IpPool::where(["uuid" => $value])->first()->id;
+            });
+
             DB::transaction(function () use($access_concentrator, $ip_pools)
             {
-                $access_concentrator->ip_pools->detach();
+                $access_concentrator->ip_pools()->detach();
 
-                $access_concentrator->ip_pools->attach($ip_pools);
+                $access_concentrator->ip_pools()->attach($ip_pools);
             });
         } else {
-            $access_concentrator->ip_pools->detach();
+            $access_concentrator->ip_pools()->detach();
         }
 
         return response("", 200);

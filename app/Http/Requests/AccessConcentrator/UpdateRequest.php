@@ -19,7 +19,7 @@ class UpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        if ($this->access_concentrator = AccessConcentrator::where(["id" => request("access_concentrator_id"), "customer_id" => request()->user()?->uuid])->whereNotNull("customer_id")->first()) {
+        if (!$this->access_concentrator = AccessConcentrator::where(["subscription_id" => request("access_concentrator_id"), "customer_id" => request()->user()?->uuid])->whereNotNull("customer_id")->first()) {
             return false;
         }
 
@@ -34,8 +34,8 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            "ip_pools" => ["required", "array", "max:50"],
-            "ip_pools.*" => ["required", Rule::exists(IpPool::class, "id")] // where customer id
+            "ip_pools" => ["present", "array", "max:50"],
+            "ip_pools.*" => ["required", Rule::exists(IpPool::class, "uuid")->where("customer_id", request()->user()?->uuid)->whereNotNull("customer_id")] // where customer id
         ];
     }
 

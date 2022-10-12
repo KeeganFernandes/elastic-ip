@@ -45,9 +45,7 @@ class IpPoolController extends Controller
      */
     public function show(Request $request, $id)
     {
-        $user = $request->user;
-
-        $ip_pool = IpPool::where(["id" => $id, "customer_id" => request()->user()?->uuid])->whereNotNull("customer_id")->first();
+        $ip_pool = IpPool::where(["uuid" => $id, "customer_id" => request()->user()?->uuid])->whereNotNull("customer_id")->first();
 
         if (!$ip_pool) {
             return response("", 410);
@@ -82,7 +80,7 @@ class IpPoolController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        $ip_pool = IpPool::where(["id" => $id, "customer_id" => request()->user()?->uuid])->whereNotNull("customer_id")->first();
+        $ip_pool = IpPool::where(["uuid" => $id, "customer_id" => request()->user()?->uuid])->whereNotNull("customer_id")->first();
 
         if (!$ip_pool) {
             return response("", 410);

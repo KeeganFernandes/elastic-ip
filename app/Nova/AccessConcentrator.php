@@ -45,6 +45,10 @@ class AccessConcentrator extends Resource
             Text::make("Name")->rules(["required", "string"]),
             Text::make("Site Id")->rules(["required", "uuid"]),
             Text::make("Customer Id")->rules(["nullable", "uuid"]),
+            Text::make("Subscription Id")->rules(["required", "uuid"]),
+            Text::make("Radius Secret")->hideWhenCreating()->hideWhenUpdating(),
+            Text::make("Radius Src Address")->rules(["required", "ipv4"]),
+            Text::make("Suspended")->showOnDetail()->hideWhenCreating()->hideWhenUpdating(),
             BelongsToMany::make("Ip Pools", "ip_pools"),
         ];
     }

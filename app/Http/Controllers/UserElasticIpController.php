@@ -16,7 +16,7 @@ class UserElasticIpController extends Controller
      */
     public function index(Request $request)
     {
-        $elastic_ip = ElasticIpAddress::where(["customer_id" => $request->user["uuid"]])->get();
+        $elastic_ip = ElasticIpAddress::where(["customer_id" => request()->user()->uuid])->whereNotNull("customer_id")->get();
 
         return response(ElasticIpResource::collection($elastic_ip));
     }
@@ -29,11 +29,11 @@ class UserElasticIpController extends Controller
      */
     public function show(Request $request, $id)
     {
-        if (!$elastic_ip = ElasticIpAddress::where(["customer_id" => $request->user["uuid"], "subscription_id" => $id])->first()) {
+        if (!$elastic_ip = ElasticIpAddress::where(["customer_id" => request()->user()->uuid, "subscription_id" => $id])->whereNotNull("customer_id")->first()) {
             return response("", 410);
         }
 
-        return response(new ElasticIpAddress($elastic_ip));
+        return response(new ElasticIpResource($elastic_ip));
     }
 
     /**
